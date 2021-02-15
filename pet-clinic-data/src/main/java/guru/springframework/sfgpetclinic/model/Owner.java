@@ -12,7 +12,7 @@ import java.util.Set;
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor
 @Entity
 @Table(name = "owners")
 @Builder
@@ -31,9 +31,10 @@ public class Owner extends Person {
     private Set<Pet> pets = new HashSet<>();
 
     @Builder
-    public Owner(Long id, final String lastName, final String address, final String city, final String telephone, final Set<Pet> pets) {
+    public Owner(Long id,final String firstName, final String lastName, final String address, final String city, final String telephone, final Set<Pet> pets) {
         this.setId(id);
         this.setLastName(lastName);
+        this.setFirstName(firstName);
         this.address = address;
         this.city = city;
         this.telephone = telephone;
