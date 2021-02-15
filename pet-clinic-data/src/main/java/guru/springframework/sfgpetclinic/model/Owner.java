@@ -1,5 +1,5 @@
 package guru.springframework.sfgpetclinic.model;
-import jdk.jshell.Snippet;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,11 +11,11 @@ import java.util.Set;
  */
 @Setter
 @Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Entity
 @Table(name = "owners")
-@Builder(access=AccessLevel.PRIVATE)
+@Builder
 public class Owner extends Person {
 
     @Column(name = "address")
@@ -29,6 +29,16 @@ public class Owner extends Person {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
+
+    @Builder
+    public Owner(Long id, final String lastName, final String address, final String city, final String telephone, final Set<Pet> pets) {
+        this.setId(id);
+        this.setLastName(lastName);
+        this.address = address;
+        this.city = city;
+        this.telephone = telephone;
+        this.pets = pets;
+    }
 
     public String getAddress() {
         return address;
